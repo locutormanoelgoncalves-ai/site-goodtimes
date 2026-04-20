@@ -20,7 +20,7 @@
     <!-- COLOQUE O LINK DO SEU GOOGLE APPS SCRIPT AQUI -->
     <script>
         const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxjvuqdKk-OYXundFM1l9t7AYPjznzOQujQX5Ai0R3ulOB8I6DxQVxp9NKfTLm16emI/exec"; 
-        const TOTAL_TICKETS = 100;
+        const TOTAL_TICKETS = 50;
     </script>
 
     <!-- Hero Section -->
@@ -183,8 +183,8 @@
 
         // Fetch Status from Google Sheets
         async function updateStatus() {
-            if(GOOGLE_SHEETS_URL === "https://script.google.com/macros/s/AKfycbxjvuqdKk-OYXundFM1l9t7AYPjznzOQujQX5Ai0R3ulOB8I6DxQVxp9NKfTLm16emI/exec") {
-                countDisplay.innerText = "100";
+            if(GOOGLE_SHEETS_URL === "SEU_LINK_DO_GOOGLE_AQUI") {
+                countDisplay.innerText = "50";
                 return;
             }
 
@@ -213,7 +213,7 @@
             e.preventDefault();
             if (isBuying || ticketsRemaining <= 0) return;
 
-            if(GOOGLE_SHEETS_URL === "https://script.google.com/macros/s/AKfycbxjvuqdKk-OYXundFM1l9t7AYPjznzOQujQX5Ai0R3ulOB8I6DxQVxp9NKfTLm16emI/exec") {
+            if(GOOGLE_SHEETS_URL === "SEU_LINK_DO_GOOGLE_AQUI") {
                 showError("Você precisa configurar o link do Google Sheets no código HTML primeiro!");
                 return;
             }
