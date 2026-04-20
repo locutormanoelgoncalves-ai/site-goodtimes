@@ -183,11 +183,6 @@
 
         // Fetch Status from Google Sheets
         async function updateStatus() {
-            if(GOOGLE_SHEETS_URL === "SEU_LINK_DO_GOOGLE_AQUI") {
-                countDisplay.innerText = "50";
-                return;
-            }
-
             try {
                 const response = await fetch(`${GOOGLE_SHEETS_URL}?action=status`);
                 const data = await response.json();
@@ -212,11 +207,6 @@
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
             if (isBuying || ticketsRemaining <= 0) return;
-
-            if(GOOGLE_SHEETS_URL === "SEU_LINK_DO_GOOGLE_AQUI") {
-                showError("Você precisa configurar o link do Google Sheets no código HTML primeiro!");
-                return;
-            }
 
             isBuying = true;
             errorMsg.classList.add('hidden');
