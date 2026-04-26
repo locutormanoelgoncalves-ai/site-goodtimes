@@ -3,163 +3,196 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Compre seu ingresso para festa Goodtimes</title>
+    <title>Goodtimes Party - Anos 80</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .bg-cubes { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
+        .hero-bg { background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen pb-12">
+<body class="min-h-screen pb-12">
 
     <script>
-        // ATENÇÃO: COLOQUE A URL DA NOVA IMPLANTAÇÃO AQUI
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxjvuqdKk-OYXundFM1l9t7AYPjznzOQujQX5Ai0R3ulOB8I6DxQVxp9NKfTLm16emI/exec"; 
-        const TOTAL_TICKETS = 50; 
+        // 1. COLE A URL DO SEU SCRIPT AQUI (após publicar como App da Web)
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzPxKG4T-xgZ5McqlUJA8TjMNYobc2J3O605-qVyhFGSo9hwgg3uwlwp5Cc3idaJUrBbA/exec"; 
+        const TOTAL_TICKETS = 50;
         const PIX_KEY = "pix@manoelgoncalves.com.br";
     </script>
 
-    <!-- Cabeçalho -->
-    <div class="relative h-64 md:h-80 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0 bg-cubes"></div>
-        <div class="relative z-10 text-center px-4">
-            <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-2 italic drop-shadow-2xl">
-                GOODTIMES <span class="text-pink-400">PARTY</span>
-            </h1>
+    <!-- Hero -->
+    <div class="hero-bg h-64 md:h-80 flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
+        <div class="relative z-10">
+            <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-2">GOODTIMES <span class="text-pink-500">PARTY</span></h1>
             <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores musica dos anos 80!</p>
         </div>
     </div>
 
-    <main class="max-w-xl mx-auto px-4 -mt-16 relative z-20">
-        <!-- Contador -->
+    <main class="max-w-xl mx-auto px-4 -mt-12 relative z-20">
+        <!-- Status e Preço -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="md:col-span-2 bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-800 backdrop-blur-xl bg-opacity-95">
-                <div class="flex items-center justify-between mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-indigo-500/20 p-3 rounded-2xl text-indigo-400"><i data-lucide="ticket" class="w-6 h-6"></i></div>
-                        <div>
-                            <h2 class="font-bold text-lg">Ingressos</h2>
-                            <p class="text-slate-400 text-xs uppercase tracking-wider">Online</p>
-                        </div>
-                    </div>
-                    <div class="text-right"><span id="remaining-count" class="text-4xl font-black text-indigo-400">--</span></div>
+            <div class="md:col-span-2 bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-2xl">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Ingressos Online</span>
+                    <span id="counter" class="text-3xl font-black text-indigo-400">--</span>
                 </div>
-                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-1000" style="width: 100%"></div>
+                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                    <div id="progress" class="h-full bg-indigo-500 transition-all duration-1000" style="width: 100%"></div>
                 </div>
             </div>
-            <div class="bg-gradient-to-br from-pink-600 to-purple-700 rounded-3xl p-6 shadow-xl text-center flex flex-col justify-center">
-                <p class="text-[10px] uppercase font-black text-pink-200">Antecipado</p>
-                <div class="text-3xl font-black leading-none">R$ 10</div>
+            <div class="bg-pink-600 rounded-3xl p-6 flex flex-col items-center justify-center shadow-xl">
+                <p class="text-[10px] font-black uppercase text-pink-200">Antecipado</p>
+                <p class="text-3xl font-black">R$ 10</p>
             </div>
         </div>
 
-        <!-- Form -->
-        <div id="form-container" class="bg-slate-900 rounded-3xl p-8 shadow-2xl border border-slate-800 backdrop-blur-xl bg-opacity-95">
-            <form id="purchase-form" class="space-y-5">
+        <!-- Formulário -->
+        <div id="form-container" class="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl">
+            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
+                <div class="w-1.5 h-6 bg-pink-500 rounded-full"></div>
+                Seus Dados
+            </h3>
+
+            <form id="ticket-form" class="space-y-5">
                 <div class="space-y-4">
                     <div>
-                        <label class="text-sm font-bold text-slate-400 ml-1">Nome Completo</label>
-                        <input required type="text" id="nome" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
+                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">Nome Completo</label>
+                        <input required type="text" id="nome" class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 outline-none focus:border-indigo-500 text-white">
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label class="text-sm font-bold text-slate-400 ml-1">WhatsApp</label>
-                            <input required type="tel" id="whatsapp" placeholder="Ex: 5511999999999" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
+                            <label class="text-xs font-bold text-slate-500 uppercase ml-1">WhatsApp</label>
+                            <input required type="tel" id="whatsapp" placeholder="55..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 text-white">
                         </div>
                         <div>
-                            <label class="text-sm font-bold text-slate-400 ml-1">E-mail</label>
-                            <input required type="email" id="email" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
+                            <label class="text-xs font-bold text-slate-500 uppercase ml-1">E-mail</label>
+                            <input required type="email" id="email" class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 text-white">
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-6 mt-6 border-t border-slate-800">
-                    <div class="bg-slate-950 border border-indigo-500/30 rounded-2xl p-5 mb-5 text-sm space-y-3">
-                        <p class="text-emerald-400 font-bold">Pix: pix@manoelgoncalves.com.br</p>
-                        <p class="text-slate-500 text-xs italic">Nome: Manoel Omar Barbosa Gonçalves</p>
+                <div class="pt-6 mt-6 border-t border-slate-800 space-y-6">
+                    <!-- Pix Box -->
+                    <div class="bg-slate-950 border border-indigo-500/30 rounded-2xl p-5">
+                        <p class="text-indigo-400 font-bold mb-3 flex items-center gap-2">
+                            <i data-lucide="qr-code" class="w-5 h-5"></i> Pagamento Pix
+                        </p>
+                        <div class="text-sm space-y-1 text-slate-300">
+                            <p><strong>Valor:</strong> R$ 10,00</p>
+                            <p><strong>Nome:</strong> Manoel Omar Barbosa Gonçalves</p>
+                            <p class="text-xs mt-3 text-slate-500 uppercase font-bold">Chave E-mail:</p>
+                            <div class="flex gap-2 mt-1">
+                                <code class="flex-1 bg-slate-900 p-3 rounded-xl text-indigo-300 font-mono text-xs break-all" id="pix-key">pix@manoelgoncalves.com.br</code>
+                                <button type="button" onclick="copyPix()" class="bg-indigo-600 p-3 rounded-xl hover:bg-indigo-500"><i data-lucide="copy" class="w-5 h-5"></i></button>
+                            </div>
+                        </div>
                     </div>
 
-                    <div class="space-y-2">
-                        <label class="text-sm font-bold text-slate-400 ml-1">Anexar Comprovante</label>
-                        <p class="text-[10px] text-amber-400 font-medium mb-2 leading-tight">Envie o comprovante para habilitar o botão de compra.</p>
-                        <label for="comprovante" class="flex flex-col items-center justify-center w-full h-32 bg-slate-950 border-2 border-dashed border-slate-800 rounded-2xl cursor-pointer">
-                            <div id="upload-placeholder"><p class="text-sm text-slate-500">Selecionar Imagem</p></div>
-                            <div id="file-info" class="hidden text-emerald-400 font-medium text-sm">✓ Arquivo Anexado</div>
-                            <input id="comprovante" type="file" accept="image/*" class="hidden" required onchange="handleFile(this)" />
+                    <!-- Upload -->
+                    <div class="space-y-3">
+                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">Anexar Comprovante</label>
+                        <p class="text-[11px] text-amber-500 font-bold leading-tight">A confirmação do ingresso somente acontece após o envio do comprovante.</p>
+                        <label for="comprovante" class="flex flex-col items-center justify-center w-full h-32 bg-slate-950 border-2 border-dashed border-slate-800 rounded-3xl cursor-pointer hover:bg-slate-900/50 transition-all">
+                            <div id="upload-ui" class="flex flex-col items-center">
+                                <i data-lucide="image" class="w-8 h-8 text-slate-600 mb-2"></i>
+                                <span class="text-sm text-slate-500">Selecionar imagem do comprovante</span>
+                            </div>
+                            <div id="file-ready" class="hidden flex items-center gap-2 text-emerald-400">
+                                <i data-lucide="check-circle" class="w-6 h-6"></i>
+                                <span class="font-bold text-sm">Comprovante anexado!</span>
+                            </div>
+                            <input id="comprovante" type="file" accept="image/*" class="hidden" required onchange="onFileSelected(this)">
                         </label>
                     </div>
                 </div>
 
-                <button type="submit" id="submit-btn" disabled class="w-full py-5 rounded-2xl font-black text-lg mt-6 bg-gradient-to-r from-indigo-600 to-pink-600 opacity-50 cursor-not-allowed">
-                    <span id="btn-text">Finalizar Compra</span>
+                <button type="submit" id="btn-submit" disabled class="w-full py-5 rounded-2xl font-black text-lg bg-indigo-600 shadow-lg shadow-indigo-600/20 opacity-50 cursor-not-allowed transition-all uppercase tracking-widest">
+                    Finalizar Compra
                 </button>
             </form>
         </div>
 
-        <div id="success-container" class="hidden bg-slate-900 border border-emerald-500/30 rounded-3xl p-8 text-center">
-            <h2 class="text-3xl font-bold text-emerald-400 mb-2">Sucesso!</h2>
-            <p class="text-slate-300">Aguarde a confirmação por IA no seu WhatsApp.</p>
+        <!-- Sucesso -->
+        <div id="success-ui" class="hidden bg-slate-900 border border-emerald-500/30 rounded-3xl p-10 text-center shadow-2xl">
+            <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
+                <i data-lucide="check" class="w-12 h-12 text-white"></i>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-3">Recebido!</h2>
+            <p class="text-slate-400 leading-relaxed mb-8">
+                Sua reserva está sendo analisada pela nossa inteligência artificial. <br>
+                <strong>Você receberá a confirmação no seu WhatsApp em poucos minutos!</strong>
+            </p>
+            <button onclick="location.reload()" class="bg-slate-800 text-slate-300 py-3 px-8 rounded-2xl font-bold">Fazer nova reserva</button>
         </div>
     </main>
 
     <script>
         lucide.createIcons();
-        const submitBtn = document.getElementById('submit-btn');
-        let base64File = "";
+        let fileBase64 = "";
 
-        async function updateStatus() {
+        async function refreshStatus() {
             try {
                 const res = await fetch(`${GOOGLE_SHEETS_URL}?action=status`);
                 const data = await res.json();
-                document.getElementById('remaining-count').innerText = data.remaining;
-                document.getElementById('progress-bar').style.width = `${(data.remaining / TOTAL_TICKETS) * 100}%`;
-            } catch(e) {}
+                document.getElementById('counter').innerText = data.remaining;
+                document.getElementById('progress').style.width = (data.remaining / TOTAL_TICKETS * 100) + "%";
+            } catch(e) { document.getElementById('counter').innerText = TOTAL_TICKETS; }
         }
 
-        function handleFile(input) {
+        function onFileSelected(input) {
             const file = input.files[0];
             if (file) {
-                document.getElementById('upload-placeholder').classList.add('hidden');
-                document.getElementById('file-info').classList.remove('hidden');
                 const reader = new FileReader();
                 reader.onload = (e) => {
-                    base64File = e.target.result.split(',')[1];
-                    submitBtn.disabled = false;
-                    submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                    fileBase64 = e.target.result.split(',')[1];
+                    document.getElementById('upload-ui').classList.add('hidden');
+                    document.getElementById('file-ready').classList.remove('hidden');
+                    const btn = document.getElementById('btn-submit');
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
                 };
                 reader.readAsDataURL(file);
             }
         }
 
-        document.getElementById('purchase-form').addEventListener('submit', async (e) => {
+        function copyPix() {
+            const text = document.getElementById('pix-key').innerText;
+            navigator.clipboard.writeText(text).then(() => {
+                alert("Chave Pix copiada!");
+            });
+        }
+
+        document.getElementById('ticket-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            submitBtn.disabled = true;
-            document.getElementById('btn-text').innerText = "Enviando...";
-            
+            const btn = document.getElementById('btn-submit');
+            btn.disabled = true;
+            btn.innerText = "PROCESSANDO...";
+
             const payload = {
                 nome: document.getElementById('nome').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 email: document.getElementById('email').value,
-                file: base64File,
+                file: fileBase64,
                 fileName: document.getElementById('comprovante').files[0].name
             };
 
             try {
-                // Enviamos como POST simples para evitar erros de CORS no Google
                 await fetch(GOOGLE_SHEETS_URL, { 
                     method: 'POST', 
                     body: JSON.stringify(payload),
                     mode: 'no-cors' 
                 });
                 document.getElementById('form-container').classList.add('hidden');
-                document.getElementById('success-container').classList.remove('hidden');
-            } catch (err) { alert("Erro ao enviar."); submitBtn.disabled = false; }
+                document.getElementById('success-ui').classList.remove('hidden');
+            } catch(err) {
+                alert("Erro ao enviar. Tente novamente.");
+                btn.disabled = false;
+                btn.innerText = "Finalizar Compra";
+            }
         });
 
-        updateStatus();
+        refreshStatus();
     </script>
 </body>
 </html>
