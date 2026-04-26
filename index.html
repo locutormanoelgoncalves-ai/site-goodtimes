@@ -4,392 +4,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Compre seu ingresso para festa Goodtimes</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Font -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; }
         .bg-cubes { background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
-        input[type="file"]::file-selector-button {
-            display: none;
-        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen selection:bg-pink-500/30 pb-12">
+<body class="bg-slate-950 text-slate-100 min-h-screen pb-12">
 
-    <!-- COLOQUE O LINK DO SEU GOOGLE APPS SCRIPT AQUI -->
     <script>
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycby63Tc82cPYFU5YmZJ2IpovYU9wM7w_6C_hvwwqEB12a2Dlefb1Tl3Mod4ROmkA9MoOTg/exec"; 
+        // ATENÇÃO: COLOQUE A URL DA NOVA IMPLANTAÇÃO AQUI
+        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbxjvuqdKk-OYXundFM1l9t7AYPjznzOQujQX5Ai0R3ulOB8I6DxQVxp9NKfTLm16emI/exec"; 
         const TOTAL_TICKETS = 50; 
         const PIX_KEY = "pix@manoelgoncalves.com.br";
     </script>
 
-    <!-- Hero Section -->
+    <!-- Cabeçalho -->
     <div class="relative h-64 md:h-80 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 flex items-center justify-center overflow-hidden">
         <div class="absolute inset-0 bg-cubes"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/10 via-transparent to-transparent"></div>
         <div class="relative z-10 text-center px-4">
             <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-2 italic drop-shadow-2xl">
                 GOODTIMES <span class="text-pink-400">PARTY</span>
             </h1>
-            <!-- Novo slogan atualizado conforme solicitado -->
-            <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores musicas dos anos 80!</p>
+            <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores musica dos anos 80!</p>
         </div>
     </div>
 
     <main class="max-w-xl mx-auto px-4 -mt-16 relative z-20">
-        
-        <!-- Counter & Prices -->
+        <!-- Contador -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
             <div class="md:col-span-2 bg-slate-900 rounded-3xl p-6 shadow-2xl border border-slate-800 backdrop-blur-xl bg-opacity-95">
                 <div class="flex items-center justify-between mb-4">
                     <div class="flex items-center gap-3">
-                        <div class="bg-indigo-500/20 p-3 rounded-2xl text-indigo-400">
-                            <i data-lucide="ticket" class="w-6 h-6"></i>
-                        </div>
+                        <div class="bg-indigo-500/20 p-3 rounded-2xl text-indigo-400"><i data-lucide="ticket" class="w-6 h-6"></i></div>
                         <div>
-                            <h2 class="font-bold text-lg">Vendas Online</h2>
-                            <p class="text-slate-400 text-xs uppercase tracking-wider">Disponibilidade</p>
+                            <h2 class="font-bold text-lg">Ingressos</h2>
+                            <p class="text-slate-400 text-xs uppercase tracking-wider">Online</p>
                         </div>
                     </div>
-                    <div class="text-right">
-                        <span id="remaining-count" class="text-4xl font-black text-indigo-400 leading-none">--</span>
-                    </div>
+                    <div class="text-right"><span id="remaining-count" class="text-4xl font-black text-indigo-400">--</span></div>
                 </div>
-                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden border border-slate-700">
-                    <div id="progress-bar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 transition-all duration-1000 ease-out" style="width: 100%"></div>
+                <div class="w-full bg-slate-800 h-3 rounded-full overflow-hidden">
+                    <div id="progress-bar" class="h-full bg-gradient-to-r from-indigo-500 to-pink-500 transition-all duration-1000" style="width: 100%"></div>
                 </div>
             </div>
-            
-            <div class="bg-gradient-to-br from-pink-600 to-purple-700 rounded-3xl p-6 shadow-xl flex flex-col justify-center items-center text-center">
-                <p class="text-[10px] uppercase font-black text-pink-200 tracking-widest mb-1">Valor Antecipado</p>
-                <div class="text-3xl font-black">R$ 10</div>
-                <p class="text-[10px] text-pink-100/70 mt-1 mt-1">*R$ 20,00 na portaria</p>
+            <div class="bg-gradient-to-br from-pink-600 to-purple-700 rounded-3xl p-6 shadow-xl text-center flex flex-col justify-center">
+                <p class="text-[10px] uppercase font-black text-pink-200">Antecipado</p>
+                <div class="text-3xl font-black leading-none">R$ 10</div>
             </div>
         </div>
 
-        <!-- Form Area -->
-        <div id="form-container" class="bg-slate-900 rounded-3xl p-8 shadow-2xl border border-slate-800 backdrop-blur-xl bg-opacity-95 block">
-            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                <div class="w-2 h-8 bg-pink-500 rounded-full"></div>
-                Seus Dados
-            </h3>
-
-            <div id="error-message" class="hidden mb-6 p-4 bg-red-500/10 border border-red-500/30 rounded-2xl flex items-start gap-3 text-red-400 text-sm animate-pulse">
-                <i data-lucide="alert-circle" class="w-5 h-5 flex-shrink-0 mt-0.5"></i>
-                <p id="error-text"></p>
-            </div>
-
+        <!-- Form -->
+        <div id="form-container" class="bg-slate-900 rounded-3xl p-8 shadow-2xl border border-slate-800 backdrop-blur-xl bg-opacity-95">
             <form id="purchase-form" class="space-y-5">
-                <!-- User Inputs -->
                 <div class="space-y-4">
-                    <div class="space-y-2">
+                    <div>
                         <label class="text-sm font-bold text-slate-400 ml-1">Nome Completo</label>
-                        <div class="relative group">
-                            <i data-lucide="user" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-indigo-500 transition-colors"></i>
-                            <input required type="text" id="nome" placeholder="Nome no ingresso" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:ring-0 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-700 text-white">
-                        </div>
+                        <input required type="text" id="nome" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
                     </div>
-
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div class="space-y-2">
+                        <div>
                             <label class="text-sm font-bold text-slate-400 ml-1">WhatsApp</label>
-                            <div class="relative group">
-                                <i data-lucide="message-circle" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-indigo-500 transition-colors"></i>
-                                <input required type="tel" id="whatsapp" placeholder="(00) 00000-0000" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:ring-0 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-700 text-white">
-                            </div>
+                            <input required type="tel" id="whatsapp" placeholder="Ex: 5511999999999" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
                         </div>
-                        <div class="space-y-2">
+                        <div>
                             <label class="text-sm font-bold text-slate-400 ml-1">E-mail</label>
-                            <div class="relative group">
-                                <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-500 group-focus-within:text-indigo-500 transition-colors"></i>
-                                <input required type="email" id="email" placeholder="Para o comprovante" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 pl-12 pr-4 focus:ring-0 focus:border-indigo-500 outline-none transition-all placeholder:text-slate-700 text-white">
-                            </div>
+                            <input required type="email" id="email" class="w-full bg-slate-950 border-2 border-slate-800 rounded-2xl py-4 px-4 text-white">
                         </div>
                     </div>
                 </div>
 
-                <!-- Payment Section -->
                 <div class="pt-6 mt-6 border-t border-slate-800">
-                    <h3 class="text-xl font-bold mb-4 flex items-center gap-2">
-                        <i data-lucide="qr-code" class="text-pink-500"></i>
-                        Pagamento via Pix
-                    </h3>
-                    
-                    <div class="bg-slate-950 border border-indigo-500/30 rounded-2xl p-5 mb-5">
-                        <p class="text-xs font-bold text-indigo-400 uppercase tracking-widest mb-3 text-center">Dados para Transferência</p>
-                        <div class="space-y-2 text-sm">
-                            <div class="flex justify-between items-center py-2 border-b border-slate-900">
-                                <span class="text-slate-500">Valor:</span>
-                                <span class="font-bold text-emerald-400 text-lg">R$ 10,00</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-slate-900">
-                                <span class="text-slate-500">Titular:</span>
-                                <span class="font-medium text-right">Manoel Omar Barbosa Gonçalves</span>
-                            </div>
-                            <div class="flex justify-between items-center py-2 border-b border-slate-900">
-                                <span class="text-slate-500">Banco:</span>
-                                <span class="font-medium">Nubank</span>
-                            </div>
-                            <div class="pt-3">
-                                <span class="text-slate-500 block text-xs mb-2">Chave Pix:</span>
-                                <div class="flex gap-2">
-                                    <code class="flex-1 bg-slate-900 p-3 rounded-xl text-indigo-300 font-mono text-xs break-all border border-slate-800" id="pix-text">pix@manoelgoncalves.com.br</code>
-                                    <button type="button" onclick="copyPix()" class="bg-indigo-600 hover:bg-indigo-500 p-3 rounded-xl transition-colors shadow-lg shadow-indigo-600/20">
-                                        <i data-lucide="copy" class="w-5 h-5"></i>
-                                    </button>
-                                </div>
-                                <p id="copy-feedback" class="text-[10px] text-emerald-400 font-bold mt-2 hidden">Chave copiada com sucesso!</p>
-                            </div>
-                        </div>
+                    <div class="bg-slate-950 border border-indigo-500/30 rounded-2xl p-5 mb-5 text-sm space-y-3">
+                        <p class="text-emerald-400 font-bold">Pix: pix@manoelgoncalves.com.br</p>
+                        <p class="text-slate-500 text-xs italic">Nome: Manoel Omar Barbosa Gonçalves</p>
                     </div>
 
-                    <!-- Upload Field -->
                     <div class="space-y-2">
                         <label class="text-sm font-bold text-slate-400 ml-1">Anexar Comprovante</label>
-                        <p class="text-[10px] text-amber-400 font-medium mb-2 px-1">A confirmação do ingresso somente acontece após o envio do comprovante.</p>
-                        <div class="relative group">
-                            <label for="comprovante" class="flex flex-col items-center justify-center w-full h-32 bg-slate-950 border-2 border-dashed border-slate-800 rounded-2xl cursor-pointer hover:border-indigo-500/50 hover:bg-slate-900/50 transition-all">
-                                <div id="upload-placeholder" class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <i data-lucide="upload-cloud" class="w-8 h-8 text-slate-500 mb-2"></i>
-                                    <p class="text-sm text-slate-500">Clique para selecionar imagem ou PDF</p>
-                                    <p class="text-[10px] text-slate-600 uppercase mt-1">Limite: 5MB</p>
-                                </div>
-                                <div id="file-info" class="hidden flex items-center gap-3 text-indigo-400">
-                                    <i data-lucide="file-check" class="w-8 h-8"></i>
-                                    <span id="file-name" class="font-medium text-sm">arquivo.jpg</span>
-                                </div>
-                                <input id="comprovante" type="file" accept="image/*,.pdf" class="hidden" required onchange="handleFile(this)" />
-                            </label>
-                        </div>
+                        <p class="text-[10px] text-amber-400 font-medium mb-2 leading-tight">Envie o comprovante para habilitar o botão de compra.</p>
+                        <label for="comprovante" class="flex flex-col items-center justify-center w-full h-32 bg-slate-950 border-2 border-dashed border-slate-800 rounded-2xl cursor-pointer">
+                            <div id="upload-placeholder"><p class="text-sm text-slate-500">Selecionar Imagem</p></div>
+                            <div id="file-info" class="hidden text-emerald-400 font-medium text-sm">✓ Arquivo Anexado</div>
+                            <input id="comprovante" type="file" accept="image/*" class="hidden" required onchange="handleFile(this)" />
+                        </label>
                     </div>
                 </div>
 
-                <button type="submit" id="submit-btn" disabled class="w-full py-5 rounded-2xl font-black text-lg mt-6 flex items-center justify-center gap-3 transition-all shadow-xl uppercase tracking-widest bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 hover:brightness-110 hover:scale-[1.02] active:scale-95 shadow-indigo-500/20 opacity-50 cursor-not-allowed">
+                <button type="submit" id="submit-btn" disabled class="w-full py-5 rounded-2xl font-black text-lg mt-6 bg-gradient-to-r from-indigo-600 to-pink-600 opacity-50 cursor-not-allowed">
                     <span id="btn-text">Finalizar Compra</span>
-                    <i data-lucide="loader-2" id="btn-loader" class="w-6 h-6 animate-spin hidden"></i>
                 </button>
             </form>
         </div>
 
-        <!-- Success Area -->
-        <div id="success-container" class="hidden bg-emerald-900/10 border border-emerald-500/30 rounded-3xl p-8 text-center shadow-[0_0_40px_rgba(16,185,129,0.1)]">
-            <div class="bg-emerald-500 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/30">
-                <i data-lucide="check-circle-2" class="w-12 h-12 text-white"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-emerald-400 mb-2">Tudo Pronto!</h2>
-            <p class="text-slate-300 mb-8">
-                Parabéns, <span id="success-name" class="font-bold text-white"></span>! <br/>
-                Sua reserva está em análise. O ingresso será validado após conferência do comprovante.
-            </p>
-            
-            <div class="bg-white text-slate-900 rounded-3xl p-8 shadow-2xl mb-8 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-indigo-500 to-pink-500"></div>
-                <p class="text-[10px] uppercase tracking-[0.3em] font-black text-slate-400 mb-2">Ingresso Número</p>
-                <p id="success-ticket" class="text-6xl font-black tracking-tighter text-indigo-600 mb-6">#---</p>
-                
-                <div class="pt-6 border-t border-slate-100 flex flex-col gap-2 text-sm text-left">
-                    <div class="flex justify-between items-center">
-                        <span class="text-slate-400">Evento:</span>
-                        <span class="font-bold uppercase italic text-xs">Festa Goodtimes</span>
-                    </div>
-                    <div class="flex justify-between items-center">
-                        <span class="text-slate-400">Status:</span>
-                        <span class="text-amber-600 font-bold uppercase text-[10px]">Aguardando Conferência</span>
-                    </div>
-                </div>
-            </div>
-
-            <button onclick="resetForm()" class="text-slate-400 font-bold hover:text-emerald-400 transition-colors py-2 px-4 border border-slate-800 rounded-xl hover:border-emerald-500/30">
-                Fazer outra reserva
-            </button>
-        </div>
-
-        <!-- Info Grid -->
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-slate-900/40 p-5 rounded-3xl border border-slate-800 flex items-center gap-4">
-                <div class="bg-indigo-500/10 p-3 rounded-2xl">
-                    <i data-lucide="calendar" class="w-6 h-6 text-indigo-400"></i>
-                </div>
-                <div>
-                    <p class="text-[10px] uppercase font-black text-slate-500 tracking-tighter">Data do Evento</p>
-                    <p class="text-sm font-bold">8 de Maio</p>
-                </div>
-            </div>
-            <div class="bg-slate-900/40 p-5 rounded-3xl border border-slate-800 flex items-center gap-4">
-                <div class="bg-pink-500/10 p-3 rounded-2xl">
-                    <i data-lucide="map-pin" class="w-6 h-6 text-pink-400"></i>
-                </div>
-                <div>
-                    <p class="text-[10px] uppercase font-black text-slate-500 tracking-tighter">Localização</p>
-                    <p class="text-sm font-bold">Remenbeer</p>
-                </div>
-            </div>
+        <div id="success-container" class="hidden bg-slate-900 border border-emerald-500/30 rounded-3xl p-8 text-center">
+            <h2 class="text-3xl font-bold text-emerald-400 mb-2">Sucesso!</h2>
+            <p class="text-slate-300">Aguarde a confirmação por IA no seu WhatsApp.</p>
         </div>
     </main>
 
-    <!-- App Logic -->
     <script>
         lucide.createIcons();
-
-        const form = document.getElementById('purchase-form');
         const submitBtn = document.getElementById('submit-btn');
-        const btnText = document.getElementById('btn-text');
-        const btnLoader = document.getElementById('btn-loader');
-        const errorMsg = document.getElementById('error-message');
-        const errorText = document.getElementById('error-text');
-        const countDisplay = document.getElementById('remaining-count');
-        const progressBar = document.getElementById('progress-bar');
-        const formContainer = document.getElementById('form-container');
-        const successContainer = document.getElementById('success-container');
-
-        let isBuying = false;
-        let ticketsRemaining = TOTAL_TICKETS;
         let base64File = "";
 
-        // UI Helpers
-        function copyPix() {
-            const tempInput = document.createElement("input");
-            tempInput.value = PIX_KEY;
-            document.body.appendChild(tempInput);
-            tempInput.select();
-            document.execCommand("copy");
-            document.body.removeChild(tempInput);
-            
-            const feedback = document.getElementById('copy-feedback');
-            feedback.classList.remove('hidden');
-            setTimeout(() => feedback.classList.add('hidden'), 3000);
+        async function updateStatus() {
+            try {
+                const res = await fetch(`${GOOGLE_SHEETS_URL}?action=status`);
+                const data = await res.json();
+                document.getElementById('remaining-count').innerText = data.remaining;
+                document.getElementById('progress-bar').style.width = `${(data.remaining / TOTAL_TICKETS) * 100}%`;
+            } catch(e) {}
         }
 
         function handleFile(input) {
             const file = input.files[0];
-            const placeholder = document.getElementById('upload-placeholder');
-            const fileInfo = document.getElementById('file-info');
-            const fileName = document.getElementById('file-name');
-
             if (file) {
-                if (file.size > 5 * 1024 * 1024) {
-                    showError("O arquivo é muito grande. Máximo de 5MB.");
-                    input.value = "";
-                    return;
-                }
-
-                fileName.innerText = file.name;
-                placeholder.classList.add('hidden');
-                fileInfo.classList.remove('hidden');
-
+                document.getElementById('upload-placeholder').classList.add('hidden');
+                document.getElementById('file-info').classList.remove('hidden');
                 const reader = new FileReader();
-                reader.onload = function(e) {
+                reader.onload = (e) => {
                     base64File = e.target.result.split(',')[1];
-                    // Habilita o botão após o arquivo ser carregado
                     submitBtn.disabled = false;
                     submitBtn.classList.remove('opacity-50', 'cursor-not-allowed');
                 };
                 reader.readAsDataURL(file);
-            } else {
-                // Desabilita se o arquivo for removido
-                submitBtn.disabled = true;
-                submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
             }
         }
 
-        async function updateStatus() {
-            if(GOOGLE_SHEETS_URL.includes("AKfycbxjvuqdKk")) {
-                countDisplay.innerText = ticketsRemaining;
-                return;
-            }
-
-            try {
-                const response = await fetch(`${GOOGLE_SHEETS_URL}?action=status`);
-                const data = await response.json();
-                ticketsRemaining = data.remaining;
-                countDisplay.innerText = ticketsRemaining;
-                const percentage = (ticketsRemaining / TOTAL_TICKETS) * 100;
-                progressBar.style.width = `${Math.max(0, percentage)}%`;
-
-                if (ticketsRemaining <= 0) {
-                    btnText.innerText = "Ingressos Esgotados";
-                    submitBtn.classList.replace('from-indigo-600', 'bg-slate-800');
-                    submitBtn.disabled = true;
-                }
-            } catch (err) {
-                console.log("Configurando...");
-            }
-        }
-
-        form.addEventListener('submit', async (e) => {
+        document.getElementById('purchase-form').addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (isBuying || ticketsRemaining <= 0 || submitBtn.disabled) return;
-
-            if(GOOGLE_SHEETS_URL.includes("AKfycbxjvuqdKk")) {
-                showError("Configure a URL do seu Google Script no código.");
-                return;
-            }
-
-            isBuying = true;
-            errorMsg.classList.add('hidden');
-            btnText.innerText = "Processando...";
-            btnLoader.classList.remove('hidden');
-
+            submitBtn.disabled = true;
+            document.getElementById('btn-text').innerText = "Enviando...";
+            
             const payload = {
-                action: 'buy',
                 nome: document.getElementById('nome').value,
                 whatsapp: document.getElementById('whatsapp').value,
                 email: document.getElementById('email').value,
                 file: base64File,
-                fileName: document.getElementById('comprovante').files[0]?.name || "comprovante.png"
+                fileName: document.getElementById('comprovante').files[0].name
             };
 
             try {
-                await fetch(GOOGLE_SHEETS_URL, {
-                    method: 'POST',
-                    mode: 'no-cors',
-                    cache: 'no-cache',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                // Enviamos como POST simples para evitar erros de CORS no Google
+                await fetch(GOOGLE_SHEETS_URL, { 
+                    method: 'POST', 
+                    body: JSON.stringify(payload),
+                    mode: 'no-cors' 
                 });
-
-                showSuccess(payload.nome, "ANALISE");
-                updateStatus();
-            } catch (err) {
-                showError("Erro na conexão. Tente novamente.");
-            } finally {
-                isBuying = false;
-                btnText.innerText = "Finalizar Compra";
-                btnLoader.classList.add('hidden');
-            }
+                document.getElementById('form-container').classList.add('hidden');
+                document.getElementById('success-container').classList.remove('hidden');
+            } catch (err) { alert("Erro ao enviar."); submitBtn.disabled = false; }
         });
 
-        function showError(msg) {
-            errorText.innerText = msg;
-            errorMsg.classList.remove('hidden');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function showSuccess(name, number) {
-            formContainer.classList.add('hidden');
-            successContainer.classList.remove('hidden');
-            document.getElementById('success-name').innerText = name.split(' ')[0];
-            document.getElementById('success-ticket').innerText = number === "ANALISE" ? "#..." : '#' + String(number).padStart(3, '0');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        function resetForm() {
-            form.reset();
-            base64File = "";
-            document.getElementById('upload-placeholder').classList.remove('hidden');
-            document.getElementById('file-info').classList.add('hidden');
-            successContainer.classList.add('hidden');
-            formContainer.classList.remove('hidden');
-            submitBtn.disabled = true;
-            submitBtn.classList.add('opacity-50', 'cursor-not-allowed');
-        }
-
         updateStatus();
-        setInterval(updateStatus, 30000); 
     </script>
 </body>
 </html>
