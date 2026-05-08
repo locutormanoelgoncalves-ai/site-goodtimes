@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodtimes Party - Anos 80</title>
+    <title>Goodtimes Party - Anos 80 (Vendas Encerradas)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
@@ -14,185 +14,50 @@
 </head>
 <body class="min-h-screen pb-12">
 
-    <script>
-        // 1. COLE A URL DO SEU SCRIPT AQUI (após publicar como App da Web)
-        const GOOGLE_SHEETS_URL = "https://script.google.com/macros/s/AKfycbzPxKG4T-xgZ5McqlUJA8TjMNYobc2J3O605-qVyhFGSo9hwgg3uwlwp5Cc3idaJUrBbA/exec"; 
-        const TOTAL_TICKETS = 50;
-        const PIX_KEY = "pix@manoelgoncalves.com.br";
-    </script>
-
-    <!-- Hero -->
     <div class="hero-bg h-64 md:h-80 flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
         <div class="relative z-10">
             <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-2">GOODTIMES <span class="text-pink-500">PARTY</span></h1>
-            <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores musica dos anos 80!</p>
+            <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores músicas dos anos 80!</p>
         </div>
     </div>
 
     <main class="max-w-xl mx-auto px-4 -mt-12 relative z-20">
-        <!-- Status e Preço -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-            <div class="md:col-span-2 bg-slate-900 rounded-3xl p-6 border border-slate-800 shadow-2xl">
-                <div class="flex justify-between items-center mb-4">
-                    <span class="text-slate-400 font-bold uppercase text-xs tracking-widest">Ingressos Online</span>
-                    <span id="counter" class="text-3xl font-black text-indigo-400">--</span>
-                </div>
-                <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
-                    <div id="progress" class="h-full bg-indigo-500 transition-all duration-1000" style="width: 100%"></div>
-                </div>
+        
+        <div class="bg-slate-900 rounded-3xl p-8 md:p-10 text-center border-2 border-pink-600 shadow-2xl shadow-pink-900/40">
+            <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-500/50">
+                <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
             </div>
-            <div class="bg-pink-600 rounded-3xl p-6 flex flex-col items-center justify-center shadow-xl">
-                <p class="text-[10px] font-black uppercase text-pink-200">Antecipado</p>
-                <p class="text-3xl font-black">R$ 10</p>
+            
+            <h2 class="text-3xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">
+                VENDAS ONLINE <br><span class="text-pink-500">ENCERRADAS!</span>
+            </h2>
+            
+            <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 mb-8">
+                <p class="text-slate-300 leading-relaxed text-lg mb-4">
+                    O lote de ingressos antecipados pelo site esgotou. Mas calma, você não vai ficar de fora dessa viagem no tempo!
+                </p>
+                <p class="text-indigo-400 font-black uppercase text-xl md:text-2xl tracking-wide">
+                    INGRESSOS AGORA SOMENTE NA PORTARIA
+                </p>
+            </div>
+
+            <div class="flex flex-col items-center justify-center space-y-3 text-sm text-slate-300 font-medium bg-slate-800/50 p-4 rounded-2xl">
+                <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-pink-500"></i> <strong>Local:</strong> Pub Remembeer</p>
+                <p class="flex items-center gap-2"><i data-lucide="calendar" class="w-5 h-5 text-pink-500"></i> <strong>Quando:</strong> Hoje, a partir das 22:30h</p>
+            </div>
+            
+            <div class="mt-8">
+                <p class="text-xs uppercase tracking-widest text-pink-400 font-black animate-pulse">
+                    ⚠️ Chegue cedo e evite filas!
+                </p>
             </div>
         </div>
 
-        <!-- Formulário -->
-        <div id="form-container" class="bg-slate-900 rounded-3xl p-8 border border-slate-800 shadow-2xl">
-            <h3 class="text-2xl font-bold mb-8 flex items-center gap-3">
-                <div class="w-1.5 h-6 bg-pink-500 rounded-full"></div>
-                Seus Dados
-            </h3>
-
-            <form id="ticket-form" class="space-y-5">
-                <div class="space-y-4">
-                    <div>
-                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">Nome Completo</label>
-                        <input required type="text" id="nome" class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 outline-none focus:border-indigo-500 text-white">
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div>
-                            <label class="text-xs font-bold text-slate-500 uppercase ml-1">WhatsApp</label>
-                            <input required type="tel" id="whatsapp" placeholder="55..." class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 text-white">
-                        </div>
-                        <div>
-                            <label class="text-xs font-bold text-slate-500 uppercase ml-1">E-mail</label>
-                            <input required type="email" id="email" class="w-full bg-slate-950 border border-slate-800 rounded-2xl py-4 px-4 text-white">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-6 mt-6 border-t border-slate-800 space-y-6">
-                    <!-- Pix Box -->
-                    <div class="bg-slate-950 border border-indigo-500/30 rounded-2xl p-5">
-                        <p class="text-indigo-400 font-bold mb-3 flex items-center gap-2">
-                            <i data-lucide="qr-code" class="w-5 h-5"></i> Pagamento Pix
-                        </p>
-                        <div class="text-sm space-y-1 text-slate-300">
-                            <p><strong>Valor:</strong> R$ 10,00</p>
-                            <p><strong>Nome:</strong> Manoel Omar Barbosa Gonçalves</p>
-                            <p class="text-xs mt-3 text-slate-500 uppercase font-bold">Chave E-mail:</p>
-                            <div class="flex gap-2 mt-1">
-                                <code class="flex-1 bg-slate-900 p-3 rounded-xl text-indigo-300 font-mono text-xs break-all" id="pix-key">pix@manoelgoncalves.com.br</code>
-                                <button type="button" onclick="copyPix()" class="bg-indigo-600 p-3 rounded-xl hover:bg-indigo-500"><i data-lucide="copy" class="w-5 h-5"></i></button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Upload -->
-                    <div class="space-y-3">
-                        <label class="text-xs font-bold text-slate-500 uppercase ml-1">Anexar Comprovante</label>
-                        <p class="text-[11px] text-amber-500 font-bold leading-tight">A confirmação do ingresso somente acontece após o envio do comprovante.</p>
-                        <label for="comprovante" class="flex flex-col items-center justify-center w-full h-32 bg-slate-950 border-2 border-dashed border-slate-800 rounded-3xl cursor-pointer hover:bg-slate-900/50 transition-all">
-                            <div id="upload-ui" class="flex flex-col items-center">
-                                <i data-lucide="image" class="w-8 h-8 text-slate-600 mb-2"></i>
-                                <span class="text-sm text-slate-500">Selecionar imagem do comprovante</span>
-                            </div>
-                            <div id="file-ready" class="hidden flex items-center gap-2 text-emerald-400">
-                                <i data-lucide="check-circle" class="w-6 h-6"></i>
-                                <span class="font-bold text-sm">Comprovante anexado!</span>
-                            </div>
-                            <input id="comprovante" type="file" accept="image/*" class="hidden" required onchange="onFileSelected(this)">
-                        </label>
-                    </div>
-                </div>
-
-                <button type="submit" id="btn-submit" disabled class="w-full py-5 rounded-2xl font-black text-lg bg-indigo-600 shadow-lg shadow-indigo-600/20 opacity-50 cursor-not-allowed transition-all uppercase tracking-widest">
-                    Finalizar Compra
-                </button>
-            </form>
-        </div>
-
-        <!-- Sucesso -->
-        <div id="success-ui" class="hidden bg-slate-900 border border-emerald-500/30 rounded-3xl p-10 text-center shadow-2xl">
-            <div class="w-20 h-20 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-emerald-500/20">
-                <i data-lucide="check" class="w-12 h-12 text-white"></i>
-            </div>
-            <h2 class="text-3xl font-bold text-white mb-3">Recebido!</h2>
-            <p class="text-slate-400 leading-relaxed mb-8">
-                Sua reserva está sendo analisada pela nossa inteligência artificial. <br>
-                <strong>Você receberá a confirmação no seu WhatsApp em poucos minutos!</strong>
-            </p>
-            <button onclick="location.reload()" class="bg-slate-800 text-slate-300 py-3 px-8 rounded-2xl font-bold">Fazer nova reserva</button>
-        </div>
     </main>
 
     <script>
+        // Inicia os ícones do Lucide
         lucide.createIcons();
-        let fileBase64 = "";
-
-        async function refreshStatus() {
-            try {
-                const res = await fetch(`${GOOGLE_SHEETS_URL}?action=status`);
-                const data = await res.json();
-                document.getElementById('counter').innerText = data.remaining;
-                document.getElementById('progress').style.width = (data.remaining / TOTAL_TICKETS * 100) + "%";
-            } catch(e) { document.getElementById('counter').innerText = TOTAL_TICKETS; }
-        }
-
-        function onFileSelected(input) {
-            const file = input.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    fileBase64 = e.target.result.split(',')[1];
-                    document.getElementById('upload-ui').classList.add('hidden');
-                    document.getElementById('file-ready').classList.remove('hidden');
-                    const btn = document.getElementById('btn-submit');
-                    btn.disabled = false;
-                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
-                };
-                reader.readAsDataURL(file);
-            }
-        }
-
-        function copyPix() {
-            const text = document.getElementById('pix-key').innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                alert("Chave Pix copiada!");
-            });
-        }
-
-        document.getElementById('ticket-form').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const btn = document.getElementById('btn-submit');
-            btn.disabled = true;
-            btn.innerText = "PROCESSANDO...";
-
-            const payload = {
-                nome: document.getElementById('nome').value,
-                whatsapp: document.getElementById('whatsapp').value,
-                email: document.getElementById('email').value,
-                file: fileBase64,
-                fileName: document.getElementById('comprovante').files[0].name
-            };
-
-            try {
-                await fetch(GOOGLE_SHEETS_URL, { 
-                    method: 'POST', 
-                    body: JSON.stringify(payload),
-                    mode: 'no-cors' 
-                });
-                document.getElementById('form-container').classList.add('hidden');
-                document.getElementById('success-ui').classList.remove('hidden');
-            } catch(err) {
-                alert("Erro ao enviar. Tente novamente.");
-                btn.disabled = false;
-                btn.innerText = "Finalizar Compra";
-            }
-        });
-
-        refreshStatus();
     </script>
 </body>
 </html>
