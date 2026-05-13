@@ -3,61 +3,476 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Goodtimes Party - Anos 80 (Vendas Encerradas)</title>
+    
+    <!-- ========================================== -->
+    <!-- SEO BÁSICO - TÍTULO E DESCRIÇÃO PRINCIPAL  -->
+    <!-- ========================================== -->
+    <title>Festa Good Times | A Melhor Festa Itinerante Anos 80 e 90</title>
+    <meta name="description" content="A Festa Good Times é a melhor festa itinerante de flashback! Tocamos hits internacionais, nacionais, sertanejo, pagode e bailão dos anos 80 e 90. Contrate para sua cidade!">
+    <meta name="keywords" content="festa anos 80, festa anos 90, festa itinerante, flashback, contratar festa anos 80, baile anos 80, musicas anos 80 e 90, festa good times, bailão, evento flashback">
+    <meta name="author" content="Festa Good Times">
+    <meta name="robots" content="index, follow"> <!-- Diz ao Google para ler e seguir a página -->
+    
+    <!-- Link Canônico (Evita penalidade por conteúdo duplicado se acessarem sem www) -->
+    <link rel="canonical" href="https://www.festagoodtimes.com.br/">
+
+    <!-- ========================================== -->
+    <!-- OPEN GRAPH (PARA COMPARTILHAR NO WHATSAPP, FACEBOOK, ETC) -->
+    <!-- ========================================== -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.festagoodtimes.com.br/">
+    <meta property="og:title" content="Festa Good Times | O Melhor dos Anos 80 e 90">
+    <meta property="og:description" content="Venha dançar com a nossa festa itinerante! Hits dos anos 80 e 90, nacional, internacional, sertanejo e muito mais. Leve a Good Times para sua cidade.">
+    <!-- IMAGEM DE COMPARTILHAMENTO: Idealmente você deve criar uma imagem de 1200x630px e hospedar. Aqui estou colocando um link de exemplo -->
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542204625-f75d5e27a695?q=80&w=1200&auto=format&fit=crop"> 
+    <meta property="og:site_name" content="Festa Good Times">
+    <meta property="og:locale" content="pt_BR">
+
+    <!-- ========================================== -->
+    <!-- DADOS ESTRUTURADOS (JSON-LD PARA O GOOGLE ENTENDER SEU NEGÓCIO) -->
+    <!-- ========================================== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "EntertainmentBusiness",
+      "name": "Festa Good Times",
+      "image": "https://images.unsplash.com/photo-1542204625-f75d5e27a695?q=80&w=1200&auto=format&fit=crop",
+      "@id": "https://www.festagoodtimes.com.br/",
+      "url": "https://www.festagoodtimes.com.br/",
+      "description": "Festa itinerante especializada em músicas dos anos 80 e 90, tocando hits internacionais, nacionais, sertanejo raiz e pagode.",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "BR"
+      }
+    }
+    </script>
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&family=Righteous&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #020617; color: #f8fafc; }
-        .hero-bg { background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 50%, #831843 100%); }
+        /* Paleta e Estilos Customizados 80s */
+        :root {
+            --neon-pink: #ff00ff;
+            --neon-cyan: #00ffff;
+            --neon-yellow: #ffff00;
+            --dark-bg: #0b0914;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--dark-bg);
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .font-retro {
+            font-family: 'Righteous', cursive;
+        }
+
+        /* Efeitos Neon */
+        .neon-text-pink {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-pink), 0 0 40px var(--neon-pink), 0 0 80px var(--neon-pink);
+        }
+        
+        .neon-text-cyan {
+            text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan), 0 0 80px var(--neon-cyan);
+        }
+
+        .neon-text-yellow {
+            text-shadow: 0 0 5px #fff, 0 0 10px var(--neon-yellow), 0 0 20px var(--neon-yellow);
+        }
+
+        .neon-border-pink {
+            border: 2px solid var(--neon-pink);
+            box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px var(--neon-pink);
+        }
+
+        .neon-border-cyan {
+            border: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan), inset 0 0 10px var(--neon-cyan);
+        }
+
+        /* Background com Grid Retrô */
+        .bg-grid-retro {
+            background-image: 
+                linear-gradient(to right, rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: center bottom;
+            position: relative;
+        }
+
+        .bg-grid-retro::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(11, 9, 20, 0) 0%, rgba(11, 9, 20, 1) 100%);
+            pointer-events: none;
+        }
+
+        /* Animação de pulso para botões */
+        @keyframes pulse-neon {
+            0% { box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px var(--neon-pink); }
+            50% { box-shadow: 0 0 25px var(--neon-pink), inset 0 0 15px var(--neon-pink); }
+            100% { box-shadow: 0 0 10px var(--neon-pink), inset 0 0 10px var(--neon-pink); }
+        }
+        .btn-neon {
+            animation: pulse-neon 2s infinite;
+            transition: all 0.3s ease;
+        }
+        .btn-neon:hover {
+            background-color: rgba(255, 0, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Gradiente animado para a linha divisória */
+        .gradient-line {
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-yellow), var(--neon-cyan));
+            background-size: 300% 300%;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
     </style>
 </head>
-<body class="min-h-screen pb-12">
+<body class="antialiased scroll-smooth">
 
-    <div class="hero-bg h-64 md:h-80 flex flex-col items-center justify-center text-center px-4 relative overflow-hidden">
-        <div class="relative z-10">
-            <h1 class="text-5xl md:text-7xl font-black italic tracking-tighter mb-2">GOODTIMES <span class="text-pink-500">PARTY</span></h1>
-            <p class="text-lg md:text-xl font-medium text-purple-200 uppercase tracking-widest">As melhores músicas dos anos 80!</p>
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-[#0b0914]/90 backdrop-blur-md border-b border-[#ff00ff]/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 font-retro text-2xl tracking-wider">
+                    <a href="#" class="text-white">GOOD<span class="text-[#ff00ff]">TIMES</span></a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#sobre" class="hover:text-[#00ffff] transition-colors px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider">A Festa</a>
+                        <a href="#musica" class="hover:text-[#ff00ff] transition-colors px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider">O Som</a>
+                        <a href="#agenda" class="hover:text-[#ffff00] transition-colors px-3 py-2 rounded-md text-sm font-semibold uppercase tracking-wider">Agenda</a>
+                        <a href="#contato" class="neon-border-pink text-[#ff00ff] px-4 py-2 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-[#ff00ff]/10 transition-all">Contrate-nos</a>
+                    </div>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-white hover:text-[#ff00ff] focus:outline-none" aria-label="Abrir menu">
+                        <i data-lucide="menu" class="h-8 w-8"></i>
+                    </button>
+                </div>
+            </div>
         </div>
-    </div>
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#0b0914] border-b border-[#ff00ff]/30">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#sobre" class="block hover:bg-[#ff00ff]/20 px-3 py-2 rounded-md text-base font-semibold uppercase">A Festa</a>
+                <a href="#musica" class="block hover:bg-[#ff00ff]/20 px-3 py-2 rounded-md text-base font-semibold uppercase">O Som</a>
+                <a href="#agenda" class="block hover:bg-[#ff00ff]/20 px-3 py-2 rounded-md text-base font-semibold uppercase">Agenda</a>
+                <a href="#contato" class="block text-[#ff00ff] px-3 py-2 rounded-md text-base font-bold uppercase">Contrate-nos</a>
+            </div>
+        </div>
+    </nav>
 
-    <main class="max-w-xl mx-auto px-4 -mt-12 relative z-20">
+    <!-- Hero Section -->
+    <section id="sobre" class="relative min-h-screen flex items-center justify-center pt-20 bg-grid-retro overflow-hidden">
+        <!-- Elementos decorativos de fundo -->
+        <div class="absolute top-1/4 left-10 w-32 h-32 bg-[#ff00ff] rounded-full mix-blend-screen filter blur-[80px] opacity-50"></div>
+        <div class="absolute bottom-1/4 right-10 w-40 h-40 bg-[#00ffff] rounded-full mix-blend-screen filter blur-[100px] opacity-40"></div>
         
-        <div class="bg-slate-900 rounded-3xl p-8 md:p-10 text-center border-2 border-pink-600 shadow-2xl shadow-pink-900/40">
-            <div class="w-20 h-20 bg-pink-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg shadow-pink-500/50">
-                <i data-lucide="alert-circle" class="w-10 h-10 text-white"></i>
-            </div>
-            
-            <h2 class="text-3xl md:text-4xl font-black text-white mb-4 uppercase tracking-tight">
-                VENDAS ONLINE <br><span class="text-pink-500">ENCERRADAS!</span>
+        <div class="relative z-10 text-center px-4 max-w-5xl mx-auto">
+            <h2 class="text-xl md:text-3xl text-[#00ffff] font-semibold tracking-[0.2em] mb-4 uppercase neon-text-cyan">
+                A Melhor Festa Itinerante
             </h2>
-            
-            <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 mb-8">
-                <p class="text-slate-300 leading-relaxed text-lg mb-4">
-                    O lote de ingressos antecipados pelo site esgotou. Mas calma, você não vai ficar de fora dessa viagem no tempo!
-                </p>
-                <p class="text-indigo-400 font-black uppercase text-xl md:text-2xl tracking-wide">
-                    INGRESSOS AGORA SOMENTE NA PORTARIA
-                </p>
-            </div>
-
-            <div class="flex flex-col items-center justify-center space-y-3 text-sm text-slate-300 font-medium bg-slate-800/50 p-4 rounded-2xl">
-                <p class="flex items-center gap-2"><i data-lucide="map-pin" class="w-5 h-5 text-pink-500"></i> <strong>Local:</strong> Pub Remembeer</p>
-                <p class="flex items-center gap-2"><i data-lucide="calendar" class="w-5 h-5 text-pink-500"></i> <strong>Quando:</strong> Hoje, a partir das 22:30h</p>
-            </div>
-            
-            <div class="mt-8">
-                <p class="text-xs uppercase tracking-widest text-pink-400 font-black animate-pulse">
-                    ⚠️ Chegue cedo e evite filas!
-                </p>
+            <h1 class="font-retro text-6xl md:text-8xl lg:text-9xl mb-6 text-white neon-text-pink leading-tight">
+                GOOD TIMES
+            </h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-300 font-light max-w-3xl mx-auto mb-10">
+                O melhor dos <span class="font-bold text-white">Anos 80 e 90</span>. Venha dançar e fazer a sua festa com as músicas que marcaram época!
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="#agenda" class="btn-neon neon-border-pink bg-transparent text-white font-bold text-lg py-4 px-10 rounded-full uppercase tracking-widest inline-flex items-center justify-center">
+                    <i data-lucide="calendar" class="mr-2 h-5 w-5"></i> Ver Agenda
+                </a>
+                <a href="#musica" class="border-2 border-white/30 hover:border-[#00ffff] hover:text-[#00ffff] text-white font-bold text-lg py-4 px-10 rounded-full uppercase tracking-widest transition-all inline-flex items-center justify-center">
+                    <i data-lucide="music" class="mr-2 h-5 w-5"></i> O que tocamos
+                </a>
             </div>
         </div>
+    </section>
 
-    </main>
+    <div class="gradient-line"></div>
 
+    <!-- Seção O Som (Mix Musical) -->
+    <!-- SEO NOTE: Usando cabeçalhos H2 e H3 para hierarquia de conteúdo -->
+    <section id="musica" class="py-20 relative bg-[#0b0914]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-retro text-4xl md:text-6xl text-white neon-text-cyan mb-4">A NOSSA PLAYLIST DOS ANOS 80 E 90</h2>
+                <p class="text-xl text-gray-400">Um mix perfeito de ritmos de flashback para não deixar ninguém parado.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <article class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#ff00ff] hover:bg-white/10 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i data-lucide="radio" class="w-24 h-24 text-[#ff00ff]"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-[#ff00ff]/20 flex items-center justify-center mb-6 neon-border-pink">
+                        <i data-lucide="globe" class="text-[#ff00ff] w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Música Internacional Anos 80</h3>
+                    <p class="text-gray-400">Os grandes hits globais de flashback. Synth-pop, New Wave, Rock de Arena e os clássicos das pistas de dança mundiais.</p>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#00ffff] hover:bg-white/10 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i data-lucide="mic-2" class="w-24 h-24 text-[#00ffff]"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-[#00ffff]/20 flex items-center justify-center mb-6 neon-border-cyan">
+                        <i data-lucide="music-2" class="text-[#00ffff] w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Música Nacional Anos 80</h3>
+                    <p class="text-gray-400">O rock nacional dos anos 80, a MPB vibrante e os ícones pop que definiram a geração no Brasil.</p>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#ffff00] hover:bg-white/10 transition-all group relative overflow-hidden lg:col-span-1 md:col-span-2 lg:col-start-auto md:col-start-1">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i data-lucide="guitar" class="w-24 h-24 text-[#ffff00]"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-[#ffff00]/20 flex items-center justify-center mb-6 border-2 border-[#ffff00] shadow-[0_0_10px_#ffff00]">
+                        <i data-lucide="mic" class="text-[#ffff00] w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Sertanejo Raiz Anos 80</h3>
+                    <p class="text-gray-400">As modas de viola e os clássicos românticos da música sertaneja antiga que embalaram corações em todo o Brasil.</p>
+                </article>
+
+                <!-- Card 4 -->
+                <article class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#ffaa00] hover:bg-white/10 transition-all group relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i data-lucide="disc" class="w-24 h-24 text-[#ffaa00]"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-[#ffaa00]/20 flex items-center justify-center mb-6 border-2 border-[#ffaa00] shadow-[0_0_10px_#ffaa00]">
+                        <i data-lucide="speaker" class="text-[#ffaa00] w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Pagode Anos 80 e 90</h3>
+                    <p class="text-gray-400">O samba e o pagode de raiz. O som dos tantãs, pandeiros e cavaquinhos que fizeram o Brasil sambar nas décadas passadas.</p>
+                </article>
+
+                <!-- Card 5 -->
+                <article class="bg-white/5 border border-white/10 p-8 rounded-2xl hover:border-[#ff0055] hover:bg-white/10 transition-all group relative overflow-hidden md:col-span-2 lg:col-span-2">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-30 transition-opacity">
+                        <i data-lucide="party-popper" class="w-32 h-32 text-[#ff0055]"></i>
+                    </div>
+                    <div class="w-14 h-14 rounded-full bg-[#ff0055]/20 flex items-center justify-center mb-6 border-2 border-[#ff0055] shadow-[0_0_10px_#ff0055]">
+                        <i data-lucide="cassette-tape" class="text-[#ff0055] w-7 h-7"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Bailão Anos 80 e 90</h3>
+                    <p class="text-gray-400 max-w-2xl">A verdadeira festa de clube! Bandinhas, ritmos regionais, lambada e todo aquele som contagiante dos bailes de salão que varavam a madrugada.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Divider Decorativo -->
+    <div class="w-full h-24 bg-gradient-to-b from-[#0b0914] to-[#1a1025]"></div>
+
+    <!-- Seção Agenda (Festa Itinerante) -->
+    <section id="agenda" class="py-20 bg-[#1a1025] relative">
+        <!-- Globo de espelhos brilhante decorativo (efeito visual) -->
+        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white rounded-full opacity-5 blur-[100px] pointer-events-none"></div>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="font-retro text-4xl md:text-6xl text-white neon-text-pink mb-4">AGENDA DA FESTA ITINERANTE</h2>
+                <p class="text-xl text-gray-400">Confira por quais cidades a Tour Good Times vai passar nos próximos meses.</p>
+            </div>
+
+            <div class="space-y-6">
+                <!-- Item Agenda -->
+                <div class="flex flex-col md:flex-row items-center justify-between bg-black/40 border-l-4 border-[#ff00ff] p-6 rounded-r-lg hover:bg-black/60 transition-all">
+                    <div class="flex items-center mb-4 md:mb-0 w-full md:w-auto">
+                        <div class="bg-[#ff00ff]/20 text-[#ff00ff] font-bold text-center p-3 rounded-lg mr-6 min-w-[80px] border border-[#ff00ff]/30">
+                            <span class="block text-2xl">15</span>
+                            <span class="block text-xs uppercase tracking-wider">MAI</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Clube Comercial - Noite do Flashback</h3>
+                            <p class="text-gray-400 flex items-center mt-1"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> São Paulo, SP</p>
+                        </div>
+                    </div>
+                    <button class="w-full md:w-auto px-6 py-2 border border-[#ff00ff] text-[#ff00ff] rounded-full hover:bg-[#ff00ff] hover:text-white transition-colors uppercase text-sm font-bold tracking-wider" aria-label="Comprar Ingresso para São Paulo">
+                        Comprar Ingresso
+                    </button>
+                </div>
+
+                <!-- Item Agenda -->
+                <div class="flex flex-col md:flex-row items-center justify-between bg-black/40 border-l-4 border-[#00ffff] p-6 rounded-r-lg hover:bg-black/60 transition-all">
+                    <div class="flex items-center mb-4 md:mb-0 w-full md:w-auto">
+                        <div class="bg-[#00ffff]/20 text-[#00ffff] font-bold text-center p-3 rounded-lg mr-6 min-w-[80px] border border-[#00ffff]/30">
+                            <span class="block text-2xl">28</span>
+                            <span class="block text-xs uppercase tracking-wider">MAI</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Centro de Eventos - Especial Anos 80</h3>
+                            <p class="text-gray-400 flex items-center mt-1"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> Curitiba, PR</p>
+                        </div>
+                    </div>
+                    <button class="w-full md:w-auto px-6 py-2 border border-[#00ffff] text-[#00ffff] rounded-full hover:bg-[#00ffff] hover:text-black transition-colors uppercase text-sm font-bold tracking-wider" aria-label="Comprar Ingresso para Curitiba">
+                        Comprar Ingresso
+                    </button>
+                </div>
+
+                <!-- Item Agenda -->
+                <div class="flex flex-col md:flex-row items-center justify-between bg-black/40 border-l-4 border-[#ffff00] p-6 rounded-r-lg hover:bg-black/60 transition-all">
+                    <div class="flex items-center mb-4 md:mb-0 w-full md:w-auto">
+                        <div class="bg-[#ffff00]/20 text-[#ffff00] font-bold text-center p-3 rounded-lg mr-6 min-w-[80px] border border-[#ffff00]/30">
+                            <span class="block text-2xl">10</span>
+                            <span class="block text-xs uppercase tracking-wider">JUN</span>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-white">Baile do Hawaii - Tênis Clube</h3>
+                            <p class="text-gray-400 flex items-center mt-1"><i data-lucide="map-pin" class="w-4 h-4 mr-1"></i> Campinas, SP</p>
+                        </div>
+                    </div>
+                    <button class="w-full md:w-auto px-6 py-2 border border-[#ffff00] text-[#ffff00] rounded-full hover:bg-[#ffff00] hover:text-black transition-colors uppercase text-sm font-bold tracking-wider" aria-label="Comprar Ingresso para Campinas">
+                        Comprar Ingresso
+                    </button>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-400 italic">Mais datas para a festa Good Times serão anunciadas em breve!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato / Contrate -->
+    <section id="contato" class="py-24 bg-[#0b0914] relative overflow-hidden">
+        <div class="absolute inset-0 bg-grid-retro opacity-30"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-br from-[#1a1025] to-[#0b0914] border border-[#ff00ff]/30 p-8 md:p-12 rounded-3xl shadow-[0_0_30px_rgba(255,0,255,0.1)]">
+                <div class="text-center mb-10">
+                    <h2 class="font-retro text-3xl md:text-5xl text-white mb-4">CONTRATE A <span class="text-[#ff00ff] neon-text-pink">GOOD TIMES</span> PARA SUA CIDADE</h2>
+                    <p class="text-gray-300">Preencha o formulário abaixo para orçamentos. Atendemos prefeituras, clubes, formaturas e eventos particulares interessados em uma autêntica festa dos anos 80 e 90.</p>
+                </div>
+
+                <form class="space-y-6" onsubmit="event.preventDefault(); showMessage();">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="nome" class="block text-sm font-medium text-gray-400 mb-2">Nome / Empresa</label>
+                            <input type="text" id="nome" required class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00ffff] focus:ring-1 focus:ring-[#00ffff] transition-colors" placeholder="Seu nome">
+                        </div>
+                        <div>
+                            <label for="telefone" class="block text-sm font-medium text-gray-400 mb-2">WhatsApp / Telefone</label>
+                            <input type="tel" id="telefone" required class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00ffff] focus:ring-1 focus:ring-[#00ffff] transition-colors" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="cidade" class="block text-sm font-medium text-gray-400 mb-2">Cidade - UF</label>
+                            <input type="text" id="cidade" required class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff00ff] focus:ring-1 focus:ring-[#ff00ff] transition-colors" placeholder="Ex: São Paulo - SP">
+                        </div>
+                        <div>
+                            <label for="data" class="block text-sm font-medium text-gray-400 mb-2">Data Prevista do Evento</label>
+                            <input type="date" id="data" class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#ff00ff] focus:ring-1 focus:ring-[#ff00ff] transition-colors" style="color-scheme: dark;">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="mensagem" class="block text-sm font-medium text-gray-400 mb-2">Mensagem</label>
+                        <textarea id="mensagem" rows="4" class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-[#00ffff] focus:ring-1 focus:ring-[#00ffff] transition-colors" placeholder="Conte-nos mais sobre o seu evento..."></textarea>
+                    </div>
+
+                    <div class="text-center pt-4">
+                        <button type="submit" class="btn-neon neon-border-cyan bg-transparent text-[#00ffff] font-bold text-lg py-4 px-12 rounded-full uppercase tracking-widest inline-flex items-center hover:text-white hover:bg-[#00ffff]/20">
+                            <i data-lucide="send" class="mr-2 w-5 h-5"></i> Solicitar Orçamento
+                        </button>
+                    </div>
+                </form>
+                
+                <!-- Mensagem de Sucesso (Oculta) -->
+                <div id="success-message" class="hidden mt-6 p-4 bg-green-500/20 border border-green-500 rounded-lg text-green-400 text-center flex items-center justify-center">
+                    <i data-lucide="check-circle" class="mr-2"></i> Mensagem enviada! Entraremos em contato em breve.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-10 border-t border-[#ff00ff]/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between">
+            <div class="font-retro text-2xl tracking-wider mb-4 md:mb-0">
+                <a href="https://www.festagoodtimes.com.br" class="text-white">GOOD<span class="text-[#ff00ff]">TIMES</span></a>
+            </div>
+            
+            <div class="flex space-x-6 mb-4 md:mb-0">
+                <a href="#" class="text-gray-400 hover:text-[#ff00ff] transition-colors" aria-label="Instagram da Festa Good Times">
+                    <i data-lucide="instagram" class="w-6 h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#00ffff] transition-colors" aria-label="Facebook da Festa Good Times">
+                    <i data-lucide="facebook" class="w-6 h-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-[#ffff00] transition-colors" aria-label="YouTube da Festa Good Times">
+                    <i data-lucide="youtube" class="w-6 h-6"></i>
+                </a>
+            </div>
+            
+            <div class="text-gray-500 text-sm">
+                &copy; <span id="year"></span> Festa Good Times - A melhor festa itinerante do Brasil. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
     <script>
-        // Inicia os ícones do Lucide
+        // Inicializar ícones
         lucide.createIcons();
+
+        // Ano dinâmico no footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // Fechar menu mobile ao clicar em um link
+        const mobileLinks = menu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Função mock para o formulário
+        function showMessage() {
+            const msgBox = document.getElementById('success-message');
+            msgBox.classList.remove('hidden');
+            setTimeout(() => {
+                msgBox.classList.add('hidden');
+            }, 5000);
+        }
     </script>
 </body>
 </html>
