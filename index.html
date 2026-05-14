@@ -44,7 +44,6 @@
             position: relative;
         }
 
-        /* Botão Flutuante WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 30px;
@@ -76,6 +75,18 @@
             color: white;
             box-shadow: 0 0 25px var(--neon-pink);
         }
+
+        input, select, textarea {
+            background: rgba(255, 255, 255, 0.05) !important;
+            border: 1px solid rgba(255, 0, 255, 0.2) !important;
+            color: white !important;
+            transition: all 0.3s ease;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--neon-cyan) !important;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3) !important;
+            outline: none;
+        }
     </style>
 </head>
 <body class="antialiased scroll-smooth">
@@ -94,9 +105,7 @@
                 <a href="#sobre" class="hover:text-[#00ffff] transition-colors font-semibold uppercase text-xs tracking-widest">A Viagem</a>
                 <a href="#musica" class="hover:text-[#ff00ff] transition-colors font-semibold uppercase text-xs tracking-widest">Ritmos</a>
                 <a href="#agenda" class="hover:text-[#00ffff] transition-colors font-semibold uppercase text-xs tracking-widest">Agenda</a>
-                <a href="https://wa.me/55996550205" target="_blank" class="px-5 py-2 rounded-full border border-[#00ffff] text-[#00ffff] hover:bg-[#00ffff]/10 font-bold text-xs uppercase tracking-widest transition-all">
-                    Fale com o DJ
-                </a>
+                <a href="#orcamento" class="hover:text-[#ff00ff] transition-colors font-semibold uppercase text-xs tracking-widest">Orçamento</a>
             </div>
         </div>
     </nav>
@@ -114,104 +123,4 @@
                 Uma imersão completa nos variados ritmos que marcaram gerações.
             </p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#contato" class="btn-neon text-white font-bold py-4 px-10 rounded-full uppercase tracking-widest">
-                    Leve para sua Cidade
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="musica" class="py-24 bg-[#0b0914]">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="font-retro text-4xl md:text-6xl text-white neon-text-cyan mb-6 italic">Variados Ritmos, Uma Só Emoção</h2>
-                <p class="text-gray-400 max-w-2xl mx-auto text-lg">Nossa seleção musical é um convite para o passado, tocando as notas que fizeram parte da sua história.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <article class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-[#ff00ff] transition-all">
-                    <i data-lucide="globe" class="text-[#ff00ff] w-10 h-10 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3">Música Internacional</h3>
-                    <p class="text-gray-400">O melhor do Pop, Rock e Dance que dominou as rádios do mundo nos anos 80.</p>
-                </article>
-
-                <article class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-[#00ffff] transition-all">
-                    <i data-lucide="guitar" class="text-[#00ffff] w-10 h-10 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3">Sertanejo & Bailão</h3>
-                    <p class="text-gray-400">As modas que marcaram época e o som contagiante dos grandes bailes de salão.</p>
-                </article>
-
-                <article class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:border-[#ffff00] transition-all">
-                    <i data-lucide="disc" class="text-[#ffff00] w-10 h-10 mb-6"></i>
-                    <h3 class="text-xl font-bold mb-3">Nacional & Pagode</h3>
-                    <p class="text-gray-400">Do Rock Brasil aos clássicos do samba e pagode dos anos 80 e 90.</p>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="agenda" class="py-24 bg-[#0b0914] border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="font-retro text-4xl md:text-6xl text-white neon-text-pink mb-4 uppercase">Agenda da Festa Itinerante</h2>
-                <p class="text-gray-400 text-lg">Confira por quais cidades a Tour Good Times vai passar nos próximos meses.</p>
-            </div>
-
-            <div class="max-w-4xl mx-auto">
-                <div class="flex flex-col md:flex-row items-center gap-6 p-6 bg-white/5 border-l-4 border-[#ff00ff] rounded-r-3xl transition-all hover:bg-white/10">
-                    <div class="flex-shrink-0 w-24 h-24 bg-[#ff00ff]/20 border border-[#ff00ff] rounded-2xl flex flex-col items-center justify-center">
-                        <span class="text-3xl font-bold text-white">05</span>
-                        <span class="text-sm font-semibold text-[#ff00ff] uppercase">JUN</span>
-                    </div>
-                    
-                    <div class="flex-grow text-center md:text-left">
-                        <h3 class="text-2xl font-bold text-white mb-1">Festa GoodTimes</h3>
-                        <div class="flex items-center justify-center md:justify-start text-gray-400 gap-2">
-                            <i data-lucide="map-pin" class="w-4 h-4"></i>
-                            <span>Pub Remembeer - Santiago, RS</span>
-                        </div>
-                    </div>
-
-                    <div class="flex-shrink-0">
-                        <a href="https://wa.me/55996550205" target="_blank" class="px-8 py-3 rounded-full border-2 border-[#ff00ff] text-[#ff00ff] hover:bg-[#ff00ff] hover:text-white font-bold transition-all uppercase text-sm tracking-widest">
-                            Comprar Ingresso
-                        </a>
-                    </div>
-                </div>
-                
-                <p class="text-center text-gray-500 mt-12 italic">Mais datas para a festa Good Times serão anunciadas em breve!</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="contato" class="py-24 bg-gradient-to-b from-[#1a1025] to-[#0b0914] relative">
-        <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
-            <h2 class="font-retro text-3xl md:text-5xl text-white mb-6">Quer viver essa experiência?</h2>
-            <p class="text-gray-300 mb-12 text-lg">Entre em contato agora para levar a <span class="text-[#ff00ff] font-bold">Festa Good Times</span> para o seu clube, prefeitura ou evento particular.</p>
-            
-            <div class="flex flex-col items-center gap-6">
-                <a href="https://wa.me/55996550205" target="_blank" class="flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5b] text-white font-bold py-5 px-12 rounded-full text-xl transition-all shadow-lg">
-                    <i data-lucide="message-circle" class="w-6 h-6"></i> Falar com Manoel no WhatsApp
-                </a>
-                <p class="text-gray-500 font-mono">Ou ligue: (55) 9 9655-0205</p>
-            </div>
-        </div>
-    </section>
-
-    <footer class="bg-black py-12 border-t border-[#ff00ff]/20">
-        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="font-retro text-2xl">GOOD<span class="text-[#ff00ff]">TIMES</span></div>
-            <div class="text-gray-500 text-sm">© <span id="year"></span> Festa Good Times. Música que faz relembrar.</div>
-            <div class="flex gap-6">
-                <a href="#" class="text-gray-400 hover:text-[#ff00ff]"><i data-lucide="instagram"></i></a>
-                <a href="#" class="text-gray-400 hover:text-[#00ffff]"><i data-lucide="facebook"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        lucide.createIcons();
-        document.getElementById('year').textContent = new Date().getFullYear();
-    </script>
-</body>
-</html>
+                <a href
